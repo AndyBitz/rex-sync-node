@@ -1,4 +1,4 @@
-# Rex-Sync NPM
+# Rex-Sync Node
 
 Together with [Rex-Sync Redaxo](https://github.com/AndyBitz/rex-sync-redaxo) this node module will allow you to live update Templates, Modules, AddOns and Assets on your Redaxo Website.
 
