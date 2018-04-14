@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 1rem;
+  font-size: 14px;
+  font-family: sans-serif;
+  background-color: white;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+
+@media (min-width: 375px) {
+  html, body {
+    font-size: 16px;
+  }
+}
+
+
+.gallery {
+  display: flex;
+}
+
+.gallery>div {
+  flex: 0 0 5rem;
+}

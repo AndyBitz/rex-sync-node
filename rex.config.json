@@ -1,0 +1,6 @@
+{
+  "templates": "./example/templates/",
+  "modules": "./example/modules/",
+  "addons": "./example/addons/",
+  "assets": "./example/assets/"
+}
