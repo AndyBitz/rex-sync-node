@@ -4,9 +4,11 @@ const log = require('../util/log')
 const fetch = require('node-fetch')
 const FormData = require('form-data')
 const {createReadStream} = require('fs')
+const isDebug = require('../util/is-debug')
 
 
 module.exports = async ({ type, event, path }) => {
+  // start routine to upload/update a file
   const relpath = path.replace(config[type], '')
   log(`${event} in ${type} - ${relpath}`)
 
@@ -35,9 +37,8 @@ module.exports = async ({ type, event, path }) => {
   if (response.status === 200) {
     const buffer = await response.text()
 
-    if (process.env.REX_SYNC_DEBUG) {
+    if (isDebug) {
       // debug only
-      console.log('\n')
       console.log(`buffer for ${event} in ${type} - ${relpath}`)
       console.log(buffer) 
       console.log('\n')
