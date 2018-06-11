@@ -7,14 +7,15 @@
     "rex-sync": "src/bin"
   },
   "scripts": {
-    "dev": "REX_SYNC_DEBUG=1 node src/main.js",
-    "start": "node src/main.js"
+    "dev": "REX_SYNC_DEBUG=1 node src/bin",
+    "start": "node src/bin"
   },
   "keywords": [],
   "author": "Andy Bitz",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^2.3.2",
+    "args": "^4.0.0",
+    "chalk": "^2.4.1",
     "chokidar": "^2.0.3",
     "form-data": "^2.3.2",
     "node-fetch": "^2.1.2"

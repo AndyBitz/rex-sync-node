@@ -6,6 +6,8 @@ const cwd = process.cwd()
 let config = null
 let secrets = null
 
+let globalConfig = {}
+
 try {
   config = require(resolve(cwd, 'rex.config.json'))
   config = resolveConfigPaths(config) // make all paths absolute
@@ -21,4 +23,7 @@ try {
   process.exit(1)
 }
 
-module.exports = { ...config, ...secrets }
+const add = (key, value) => globalConfig[key] = value
+
+globalConfig = { ...config, ...secrets, add }
+module.exports = globalConfig
