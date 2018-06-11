@@ -39,6 +39,7 @@ module.exports = async ({ type, event, path }) => {
 
     if (isDebug) {
       // debug only
+      console.log('\n')
       console.log(`buffer for ${event} in ${type} - ${relpath}`)
       console.log(buffer) 
       console.log('\n')
