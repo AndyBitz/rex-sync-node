@@ -64,8 +64,8 @@ npm install --save-dev rex-sync-node
 ```
 
 ```js
-const rex = require('rex-sync-node') // this will start a child process
-rex() // this will return the child process
+const rex = require('rex-sync-node')
+rex() // async function that starts to watch the paths in rex.config.json
 ```
 
 
