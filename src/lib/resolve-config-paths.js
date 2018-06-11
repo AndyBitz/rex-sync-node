@@ -9,6 +9,10 @@ module.exports = (config) => {
     const key = keys[i]
     const value = config[key]
 
+    if (key === 'website') {
+      continue
+    }
+
     if (value !== 'website') {
       try {
         config[key] = resolve(value)
