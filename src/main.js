@@ -1,10 +1,14 @@
 // packages
-const {spawn} = require('child_process')
+const log = require('./util/log')
+const config = require('./lib/config')
+const watcher = require('./lib/watch')
 
 
-const run = spawn('node', [`${__dirname}/run.js`])
+const main = async () => {
+  log('starting')
 
-run.stdout.pipe(process.stdout)
-run.stderr.pipe(process.stderr)
+  // watch directories
+  watcher(config)
+}
 
-module.exports = () => run
+module.exports = main
