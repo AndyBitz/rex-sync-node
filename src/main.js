@@ -7,7 +7,7 @@ const watcher = require('./lib/watch')
 
 args
   .option('start', `Watch files and only upload changes [Default]`)
-  .option('init', `Upload all files that rex-sync-node will find`)
+  .option('init', `Upload and then watch all files that rex-sync will find`)
 
 const flags = args.parse(process.argv)
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <title>Merkur</title>
   <script async defer src="/assets/app.js"></script>
   <link rel="stylesheet" type="text/css" href="/assets/main.css">

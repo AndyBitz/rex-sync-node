@@ -4,13 +4,23 @@ const log = require('../util/log')
 const fetch = require('node-fetch')
 const FormData = require('form-data')
 const {createReadStream} = require('fs')
+const getQueue = require('../util/queue')
 const isDebug = require('../util/is-debug')
 
+// create a process queue that processes each process
+// one after another
+const queue = getQueue()
 
-module.exports = async ({ type, event, path }) => {
+
+module.exports = ({ type, event, path }) => queue.push(async () => {
   // start routine to upload/update a file
   const relpath = path.replace(config[type], '')
+
   log(`${event} in ${type} - ${relpath}`)
+
+  const write = (...args) => {
+    console.log(' '.repeat(10), ...args)
+  }
 
   const form = new FormData()
   form.append('rex-sync-request', 1)
@@ -39,25 +49,23 @@ module.exports = async ({ type, event, path }) => {
 
     if (isDebug) {
       // debug only
-      console.log('\n')
-      console.log(`buffer for ${event} in ${type} - ${relpath}`)
-      console.log(buffer) 
-      console.log('\n')
+      write(`[Debug] buffer for ${event} in ${type} - ${relpath}`)
+      write(`[Debug] ${buffer}`) 
     }
 
     try {
       const result = JSON.parse(buffer)
       if (result.error) {
-        log(result.error)
+        write(result.error)
       } else {
-        log(`updated ${relpath}`)
+        write(`updated`)
       }
     } catch(err) {
-      console.error(buffer)
-      console.error(err)
-      console.error(`\n`)
+      console.errorlog(`buffer`)
+      console.errorlog(err)
+      console.errorlog('\n')
     }
   } else {
-    log(`failed - status: ${response.status}`)
+    write(`failed - status: ${response.status}`)
   }
-}
+})

@@ -2,6 +2,7 @@
 const push = require('./push')
 const log = require('../util/log')
 const chokidar = require('chokidar')
+const getQueue = require('../util/queue')
 
 
 module.exports = (config) => {
@@ -40,4 +41,7 @@ module.exports = (config) => {
     .on('change', (path) => push({ type: 'templates', event: 'change', path }))
     .on('unlink', (path) => push({ type: 'templates', event: 'unlink', path }))
     .on('add', (path) => push({ type: 'templates', event: 'add', path }))
+
+  // start to process queue after everything has been added
+  getQueue().start()
 }
