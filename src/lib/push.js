@@ -1,4 +1,5 @@
 // packages
+const chalk = require('chalk')
 const config = require('./config')
 const log = require('../util/log')
 const fetch = require('node-fetch')
@@ -56,9 +57,10 @@ module.exports = ({ type, event, path }) => queue.push(async () => {
     try {
       const result = JSON.parse(buffer)
       if (result.error) {
+        write(`error ${chalk.red('✘')}`)
         write(result.error)
       } else {
-        write(`updated`)
+        write(`updated ${chalk.green('✔')}`)
       }
     } catch(err) {
       console.errorlog(`buffer`)
